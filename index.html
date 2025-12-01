@@ -223,77 +223,158 @@
             </div>
 
             <!-- Category 1: Fresh Oranges -->
-            <div id="grid-fresh" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 animate-fade-in-up">
+            <!-- ปรับ Grid เป็น 2 คอลัมน์ (grid-cols-2) และลดช่องว่าง (gap-4) -->
+            <div id="grid-fresh" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 animate-fade-in-up">
                 <!-- Card 1 -->
-                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
-                    <div class="relative h-80 overflow-hidden">
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <!-- ลดความสูงรูปภาพเหลือ h-40 (เดิม h-80) -->
+                    <div class="relative h-40 overflow-hidden">
                         <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/474204752_8538270879606621_5509841260978710503_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=old2Q-gubKwQ7kNvwF1oR6G&_nc_oc=AdnWHzGeSDvPtCyYIXYBrl6fOqf70S44ywlohPInLkF1NA9kj2Cq4WJWELMYAddhYHs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=f9cSZz9lBFI6b8EuaSEeQA&oh=00_AfiDNYwoy1BE1B86a2-s283lHfSiAEmu-VEXDbj1Gasaog&oe=6933903D" 
                              alt="ส้มสายน้ำผึ้ง เบอร์ 6" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">Jumbo</div>
+                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] font-bold text-primary shadow-sm">Jumbo</div>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow text-center">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มสายน้ำผึ้ง เบอร์ 6</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">ลูกใหญ่ จัมโบ้ หวานฉ่ำเต็มคำ คัดพิเศษทุกลูก</p>
-                        <div class="flex flex-col items-center gap-3">
-                            <span class="text-primary font-bold text-xl">฿95 / กก.</span>
-                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
-                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                    <!-- ลด Padding เหลือ p-3 -->
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">ส้มสายน้ำผึ้ง เบอร์ 6</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">ลูกใหญ่ จัมโบ้ หวานฉ่ำเต็มคำ</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿95 / กก.</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-shopping-basket mr-1.5"></i> สั่งซื้อ
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
-                    <div class="relative h-80 overflow-hidden">
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-40 overflow-hidden">
                         <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506358721_9478410945592605_8816514971749898940_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KyNnCnk9K50Q7kNvwHitGlG&_nc_oc=Adn4UkyFftV370TigLpl1M7B-GuAQ_CWTV-Vq5XX62FGG2EYasGwXbalWshUXc1W9wM&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=NSyO_MDOtnV3WUtI-BP0MQ&oh=00_Afg8YxjIWc0w-EXU90srxnNiJLxdMfl-EvXa_WabgmhWGQ&oe=69336FCB" 
                              alt="ส้มสายน้ำผึ้ง เบอร์ 5" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">ขายดี</div>
+                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] font-bold text-primary shadow-sm">ขายดี</div>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow text-center">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มสายน้ำผึ้ง เบอร์ 5</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">ขนาดกำลังทาน รสชาติดี เปลือกบาง แกะง่าย</p>
-                        <div class="flex flex-col items-center gap-3">
-                            <span class="text-primary font-bold text-xl">฿85 / กก.</span>
-                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
-                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">ส้มสายน้ำผึ้ง เบอร์ 5</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">ขนาดกำลังทาน รสชาติดี</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿85 / กก.</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-shopping-basket mr-1.5"></i> สั่งซื้อ
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
-                    <div class="relative h-80 overflow-hidden">
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-40 overflow-hidden">
                         <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506930112_9477649162335450_9120063896684514903_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5qsOc9aodjsQ7kNvwGY3HRN&_nc_oc=AdlScLWd9NRoOANsb1ylQBDAOZFvPOFW81ASUQn48YlbuW5wuFhLiLzZ2Z9U3yEJ0o4&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=mO74s6pq09l7hY-ONqznRQ&oh=00_AfjcTiWPhfQH5wosmkLumySeHIZbu2gLY9Dh1CFFZPZFtw&oe=69336657" 
                              alt="ส้มคั้นน้ำ" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow text-center">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มคั้นน้ำ (ผิวลาย)</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">สำหรับคั้นน้ำโดยเฉพาะ น้ำเยอะ รสจัดจ้าน</p>
-                        <div class="flex flex-col items-center gap-3">
-                            <span class="text-primary font-bold text-xl">฿45 / กก.</span>
-                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
-                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">ส้มคั้นน้ำ (ผิวลาย)</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">น้ำเยอะ รสจัดจ้าน</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿45 / กก.</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-shopping-basket mr-1.5"></i> สั่งซื้อ
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
-                    <div class="relative h-80 overflow-hidden">
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-40 overflow-hidden">
                         <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/507963925_9475551242545242_4253108606599576883_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Yb83GS39bykQ7kNvwEFgY8U&_nc_oc=Adk6q9jyUfyID-4G_71CqJDQkVpoDAeXFyhMxk6lOkycFGrxN7KD81gCe_MfGooyXFs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=Yxxs_a5whOEAe5XhpnT7vA&oh=00_Afjl2JgzpU1qemPsWCr4Gazm9tTNRhXx505nqIHCYtbREg&oe=693382B5" 
                              alt="ส้มรวมเบอร์" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                         <div class="absolute top-4 right-4 bg-red-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">โปรโมชั่น</div>
+                         <div class="absolute top-2 right-2 bg-red-500/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm">โปรโมชั่น</div>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow text-center">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มรวมเบอร์ (10 กก.)</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">สุดคุ้ม! คละไซส์ 4-5-6 เหมาะสำหรับครอบครัวใหญ่</p>
-                        <div class="flex flex-col items-center gap-3">
-                            <span class="text-primary font-bold text-xl">฿750 / ลัง</span>
-                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
-                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">ส้มรวมเบอร์ (10 กก.)</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">สุดคุ้ม! คละไซส์ 4-5-6</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿750 / ลัง</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-shopping-basket mr-1.5"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Juice & Processed (Compact Style) -->
+            <div id="grid-juice" class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 animate-fade-in-up">
+                 <!-- Card 1 -->
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/505833915_9459216510845382_899238198851023143_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=2GsyYHIWmOIQ7kNvwGBnZSM&_nc_oc=AdkDYMOmEM-DTky1ZnxYGQ_Mtw-85MnMBtZSQsPik4GfvkI__losWZoy9J1IJpShgbs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=xHSbBqdYl3bQb2psqr3xgA&oh=00_AfitY-4WtLNHqMzNv1-FSKgpSFlrUeVvsfx3fKarkqu-7g&oe=69336F8B" 
+                             alt="น้ำส้มคั้นสด" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] font-bold text-primary shadow-sm">100%</div>
+                    </div>
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">น้ำส้มคั้นสด</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">คั้นสดจากสวน ไม่ผสมหัวเชื้อ</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿45 / ขวด</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-shopping-basket mr-1.5"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/504917759_9452737214826645_8681400572067492958_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=Ghnz13MYpCgQ7kNvwF40v-c&_nc_oc=Adk_fyz2t232C_pDH7ETX3J-X0nYjrnGeK7kh-eCDjxtPAO9cGvjFHZ2f7osVFrThtQ&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=NRp89c50AiILJGnCswWT6w&oh=00_AfgmcdESrYpx0qWafhh5jSFGbfW9XQ8Uljuy8bUm9YzWaA&oe=693392B3" 
+                             alt="น้ำส้มเกล็ดหิมะ" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                         <div class="absolute top-2 right-2 bg-orange-500/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm">แช่แข็ง</div>
+                    </div>
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">น้ำส้มเกล็ดหิมะ</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">หวานเย็นชื่นใจ เนื้อส้มเน้นๆ</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿35 / ถ้วย</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-shopping-basket mr-1.5"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Card 3 -->
+                 <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/505947118_9451836244916742_3746854923972839524_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=z5CLbUEIo-AQ7kNvwFThTpw&_nc_oc=AdlGKO0xqRS6TDLOxVsh77lQ7x3RgGDqF4fU5S7zGjCB59AL5BhhNQKVSNmTHyXvPuE&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=GyNEtUR53AJCNbYgGOIT8A&oh=00_AfiuFOJS-PAT4TVTCfYXGsEi9X1lb3l-P57sNN4vKUbChA&oe=69337785" 
+                             alt="น้ำส้มขวดใหญ่" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">น้ำส้มคั้นสด (ขวดใหญ่)</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">ขนาดครอบครัว จุใจ 1 ลิตร</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿120 / ขวด</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-shopping-basket mr-1.5"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Card 4 -->
+                 <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506032272_9451186328315067_433183895014584213_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QKGs88BYqQAQ7kNvwGpV413&_nc_oc=Admg4n3xH6238Hw_gl3-xD88ROVdUEPHDRoy2GUWCT-MGOffPB-caScdkVKg0wO1AU0&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=_clSkUezEC_Y6k1EZVdnDw&oh=00_AfhBoAEGe2ZzqAJgP7yJ15uFaQmx_McD56tK3X9gM3rKzA&oe=693392B5" 
+                             alt="เซตจัดเบรค" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-2 right-2 bg-primary/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm">Snack Box</div>
+                    </div>
+                    <div class="p-3 flex flex-col flex-grow text-center">
+                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight">เซตน้ำส้มจัดเบรค</h3>
+                        <p class="text-xs text-gray-500 mb-2 line-clamp-2 flex-grow">เหมาะสำหรับงานเลี้ยง ประชุม</p>
+                        <div class="flex flex-col items-center gap-2 mt-auto">
+                            <span class="text-primary font-bold text-base">฿35+</span>
+                            <button class="bg-gray-900 text-white w-full py-1.5 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md text-xs font-medium">
+                                <i class="fas fa-clipboard-list mr-1.5"></i> ขอใบเสนอราคา
                             </button>
                         </div>
                     </div>
