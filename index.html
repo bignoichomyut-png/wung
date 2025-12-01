@@ -29,6 +29,15 @@
                         secondary: '#FFF3E0', /* สีครีมรองพื้น */
                         dark: '#3E2723', /* สีน้ำตาลเข้มเกือบดำ */
                         accent: '#F57C00', /* สีส้มสดใส */
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -46,12 +55,13 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .glass-dark {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
         /* Card Hover Effect */
@@ -74,19 +84,26 @@
             background: #F57C00; 
             border-radius: 4px;
         }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E65100;
+        }
     </style>
 </head>
-<body class="font-sans text-gray-700 bg-gray-50 antialiased selection:bg-orange-200">
+<body class="font-sans text-gray-700 bg-gray-50 antialiased selection:bg-orange-200 selection:text-orange-900">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 transition-all duration-300 glass shadow-sm" id="navbar">
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-sm" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img class="h-12 w-auto rounded-full shadow-md border border-orange-100" 
-                         src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/460353343_7756414081125642_6234499141421069389_n.png?stp=dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=1IFlUZ5A4vAQ7kNvwFBcvKo&_nc_oc=AdkCxRvabD24yBROEBywJpkjs86fb3qi5F5G0P_KovZDeKFabbqCqoXFw25Hu7p3le0&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=0FbDq_6lwbcR7uQ-Cs1zcQ&oh=00_AfhaqmONVlpU0yzfS-2CS-tqQm4ADwUW28PteQK-MBnG6Q&oe=69337586" 
-                         alt="Logo สวนส้มวังน้ำทิพย์">
+                    <!-- Fallback image used if original link expires -->
+                    <div class="relative h-12 w-12 rounded-full overflow-hidden shadow-md border border-orange-100 flex items-center justify-center bg-orange-100">
+                        <img class="h-full w-full object-cover" 
+                             src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/460353343_7756414081125642_6234499141421069389_n.png?stp=dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=1IFlUZ5A4vAQ7kNvwFBcvKo&_nc_oc=AdkCxRvabD24yBROEBywJpkjs86fb3qi5F5G0P_KovZDeKFabbqCqoXFw25Hu7p3le0&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=0FbDq_6lwbcR7uQ-Cs1zcQ&oh=00_AfhaqmONVlpU0yzfS-2CS-tqQm4ADwUW28PteQK-MBnG6Q&oe=69337586" 
+                             onerror="this.src='https://cdn-icons-png.flaticon.com/512/10542/10542526.png'"
+                             alt="Logo">
+                    </div>
                     <span class="font-semibold text-xl tracking-tight text-primary hidden md:block">สวนส้ม วังน้ำทิพย์</span>
                 </div>
 
@@ -102,7 +119,7 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none p-2">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -110,14 +127,14 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50">เกี่ยวกับเรา</a>
-                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50">สินค้าและบริการ</a>
-                <a href="#atmosphere" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50">บรรยากาศ</a>
-                <a href="#booking" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50">ระบบจอง</a>
-                <a href="#claim" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-red-500 hover:bg-red-50">แจ้งสินค้าเสียหาย</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary font-bold">ติดต่อเรา</a>
+        <div class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full shadow-lg" id="mobile-menu">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#about" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50 border-b border-gray-50">เกี่ยวกับเรา</a>
+                <a href="#products" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50 border-b border-gray-50">สินค้าและบริการ</a>
+                <a href="#atmosphere" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50 border-b border-gray-50">บรรยากาศ</a>
+                <a href="#booking" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-orange-50 border-b border-gray-50">ระบบจอง</a>
+                <a href="#claim" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-red-500 hover:bg-red-50 border-b border-gray-50">แจ้งสินค้าเสียหาย</a>
+                <a href="#contact" class="block px-3 py-3 rounded-md text-base font-medium text-white bg-primary mt-2 text-center shadow-md">ติดต่อเรา</a>
             </div>
         </div>
     </nav>
@@ -138,15 +155,15 @@
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-wide shadow-black drop-shadow-lg">
                     สวนส้ม <span class="text-orange-400">วังน้ำทิพย์</span>
                 </h1>
-                <p class="text-lg md:text-xl text-gray-200 font-light mb-8 max-w-2xl mx-auto">
+                <p class="text-lg md:text-xl text-gray-200 font-light mb-8 max-w-2xl mx-auto leading-relaxed">
                     สัมผัสความสดชื่นจากธรรมชาติ บรรยากาศแห่งขุนเขา <br class="hidden md:block"> และส้มสายน้ำผึ้งที่หวานฉ่ำที่สุด
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#products" class="bg-primary hover:bg-orange-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105">
-                        ดูสินค้าแนะนำ
+                    <a href="#products" class="bg-primary hover:bg-orange-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
+                        <i class="fas fa-orange"></i> ดูสินค้าแนะนำ
                     </a>
-                    <a href="#booking" class="bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105">
-                        จองคิวเข้าชม
+                    <a href="#booking" class="bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2">
+                        <i class="fas fa-calendar-alt"></i> จองคิวเข้าชม
                     </a>
                 </div>
             </div>
@@ -159,7 +176,7 @@
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="w-full md:w-1/2 relative">
                     <div class="absolute -top-4 -left-4 w-24 h-24 bg-orange-100 rounded-full z-0"></div>
-                    <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?q=80&w=1000&auto=format&fit=crop" 
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/494677176_9138681092898927_5852761622787485206_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=Qm6g9JKTsXkQ7kNvwGvYy9x&_nc_oc=Adl9z5apLeOz4swztFaToOPi3BxFX91EbCU2vcEYmfKr_BKdMd9Ga72pImjnkC8YPiI&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=3ExeuuYevmro-FxUCOLANQ&oh=00_AfjtXpvRZHbTAktqzetqp9fXGSOtLtqcScKNzlN9ULFnWg&oe=69339267" 
                          alt="About Us" 
                          class="relative z-10 rounded-2xl shadow-xl w-full object-cover h-[400px]">
                 </div>
@@ -170,12 +187,12 @@
                         สวนส้มวังน้ำทิพย์ ก่อตั้งขึ้นด้วยความรักในธรรมชาติและการเกษตรแบบยั่งยืน เราคัดสรรสายพันธุ์ส้มที่ดีที่สุด ปลูกด้วยกรรมวิธีที่ใส่ใจสิ่งแวดล้อม เพื่อให้ได้ผลผลิตที่มีคุณภาพ รสชาติหวาน หอม และปลอดภัยสำหรับผู้บริโภค
                     </p>
                     <div class="grid grid-cols-2 gap-6 mt-8">
-                        <div class="p-4 bg-orange-50 rounded-xl border border-orange-100 text-center">
+                        <div class="p-4 bg-orange-50 rounded-xl border border-orange-100 text-center hover:shadow-md transition">
                             <i class="fas fa-leaf text-3xl text-primary mb-2"></i>
                             <h4 class="font-bold text-gray-800">เกษตรอินทรีย์</h4>
                             <p class="text-xs text-gray-500">ปลอดภัยไร้สารเคมี</p>
                         </div>
-                        <div class="p-4 bg-orange-50 rounded-xl border border-orange-100 text-center">
+                        <div class="p-4 bg-orange-50 rounded-xl border border-orange-100 text-center hover:shadow-md transition">
                             <i class="fas fa-award text-3xl text-primary mb-2"></i>
                             <h4 class="font-bold text-gray-800">เกรดพรีเมียม</h4>
                             <p class="text-xs text-gray-500">คัดพิเศษทุกผล</p>
@@ -189,71 +206,173 @@
     <!-- Recommended Products -->
     <section id="products" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900">สินค้าและบริการแนะนำ</h2>
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900">สินค้าของเรา</h2>
                 <div class="w-20 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
-                <p class="mt-4 text-gray-600">คัดสรรสิ่งดีๆ จากสวนส่งตรงถึงหน้าบ้านคุณ</p>
+                <p class="mt-4 text-gray-600">คัดพิเศษจากสวนแม่สรวย ส่งความสดชื่นถึงมือคุณ</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Product Category Tabs (Capsule Style) -->
+            <div class="flex justify-center gap-4 mb-12">
+                <button onclick="switchCategory('fresh')" id="btn-fresh" class="px-8 py-3 rounded-full text-base font-semibold shadow-md transition-all duration-300 transform hover:scale-105 bg-primary text-white ring-4 ring-orange-100">
+                    <i class="fas fa-leaf mr-2"></i> ส้มสดจากต้น
+                </button>
+                <button onclick="switchCategory('juice')" id="btn-juice" class="px-8 py-3 rounded-full text-base font-semibold shadow-sm transition-all duration-300 transform hover:scale-105 bg-white text-gray-600 hover:bg-orange-50 border border-gray-200">
+                    <i class="fas fa-glass-water mr-2"></i> น้ำส้มคั้น & แปรรูป
+                </button>
+            </div>
+
+            <!-- Category 1: Fresh Oranges -->
+            <div id="grid-fresh" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 animate-fade-in-up">
                 <!-- Card 1 -->
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1547514701-42782101795e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="ส้มสายน้ำผึ้ง" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">ขายดี</div>
+                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/474204752_8538270879606621_5509841260978710503_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=old2Q-gubKwQ7kNvwF1oR6G&_nc_oc=AdnWHzGeSDvPtCyYIXYBrl6fOqf70S44ywlohPInLkF1NA9kj2Cq4WJWELMYAddhYHs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=f9cSZz9lBFI6b8EuaSEeQA&oh=00_AfiDNYwoy1BE1B86a2-s283lHfSiAEmu-VEXDbj1Gasaog&oe=6933903D" 
+                             alt="ส้มสายน้ำผึ้ง เบอร์ 6" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">Jumbo</div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มสายน้ำผึ้ง Premium</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2">รสชาติหวานฉ่ำ เปลือกบาง คัดไซส์พิเศษ เหมาะสำหรับเป็นของฝาก</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-primary font-bold text-lg">฿85 / กก.</span>
-                            <button class="bg-gray-900 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-shopping-basket"></i></button>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มสายน้ำผึ้ง เบอร์ 6</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">ลูกใหญ่ จัมโบ้ หวานฉ่ำเต็มคำ คัดพิเศษทุกลูก</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">฿95 / กก.</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="น้ำส้มคั้นสด" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506358721_9478410945592605_8816514971749898940_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KyNnCnk9K50Q7kNvwHitGlG&_nc_oc=Adn4UkyFftV370TigLpl1M7B-GuAQ_CWTV-Vq5XX62FGG2EYasGwXbalWshUXc1W9wM&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=NSyO_MDOtnV3WUtI-BP0MQ&oh=00_Afg8YxjIWc0w-EXU90srxnNiJLxdMfl-EvXa_WabgmhWGQ&oe=69336FCB" 
+                             alt="ส้มสายน้ำผึ้ง เบอร์ 5" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">ขายดี</div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">น้ำส้มคั้นสด 100%</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2">ไม่ผสมน้ำตาล ไม่ใส่วัตถุกันเสีย สดจากสวนวันต่อวัน</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-primary font-bold text-lg">฿45 / ขวด</span>
-                            <button class="bg-gray-900 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-shopping-basket"></i></button>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มสายน้ำผึ้ง เบอร์ 5</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">ขนาดกำลังทาน รสชาติดี เปลือกบาง แกะง่าย</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">฿85 / กก.</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1589136709873-1f19d087968e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="แยมส้มโฮมเมด" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506930112_9477649162335450_9120063896684514903_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5qsOc9aodjsQ7kNvwGY3HRN&_nc_oc=AdlScLWd9NRoOANsb1ylQBDAOZFvPOFW81ASUQn48YlbuW5wuFhLiLzZ2Z9U3yEJ0o4&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=mO74s6pq09l7hY-ONqznRQ&oh=00_AfjcTiWPhfQH5wosmkLumySeHIZbu2gLY9Dh1CFFZPZFtw&oe=69336657" 
+                             alt="ส้มคั้นน้ำ" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">แยมส้มโฮมเมด</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2">เนื้อส้มเน้นๆ หวานน้อย ทานคู่กับขนมปังยามเช้า</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-primary font-bold text-lg">฿120 / กระปุก</span>
-                            <button class="bg-gray-900 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-shopping-basket"></i></button>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มคั้นน้ำ (ผิวลาย)</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">สำหรับคั้นน้ำโดยเฉพาะ น้ำเยอะ รสจัดจ้าน</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">฿45 / กก.</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="บริการชมสวน" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-primary/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">แนะนำ</div>
+                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/507963925_9475551242545242_4253108606599576883_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Yb83GS39bykQ7kNvwEFgY8U&_nc_oc=Adk6q9jyUfyID-4G_71CqJDQkVpoDAeXFyhMxk6lOkycFGrxN7KD81gCe_MfGooyXFs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=Yxxs_a5whOEAe5XhpnT7vA&oh=00_Afjl2JgzpU1qemPsWCr4Gazm9tTNRhXx505nqIHCYtbREg&oe=693382B5" 
+                             alt="ส้มรวมเบอร์" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                         <div class="absolute top-4 right-4 bg-red-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">โปรโมชั่น</div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">บัตรเข้าชมสวน + บุฟเฟต์</h3>
-                        <p class="text-sm text-gray-500 mb-4 line-clamp-2">เดินชมสวน ถ่ายรูป และทานส้มไม่อั้นจากต้น</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-primary font-bold text-lg">฿150 / ท่าน</span>
-                            <a href="#booking" class="bg-gray-900 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-ticket-alt"></i></a>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">ส้มรวมเบอร์ (10 กก.)</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">สุดคุ้ม! คละไซส์ 4-5-6 เหมาะสำหรับครอบครัวใหญ่</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">฿750 / ลัง</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Juice & Processed (New Images) -->
+            <div id="grid-juice" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 animate-fade-in-up">
+                 <!-- Card 1 -->
+                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/505833915_9459216510845382_899238198851023143_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=2GsyYHIWmOIQ7kNvwGBnZSM&_nc_oc=AdkDYMOmEM-DTky1ZnxYGQ_Mtw-85MnMBtZSQsPik4GfvkI__losWZoy9J1IJpShgbs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=xHSbBqdYl3bQb2psqr3xgA&oh=00_AfitY-4WtLNHqMzNv1-FSKgpSFlrUeVvsfx3fKarkqu-7g&oe=69336F8B" 
+                             alt="น้ำส้มคั้นสด" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">100%</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">น้ำส้มคั้นสด (พร้อมดื่ม)</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">คั้นสดจากสวน ไม่ผสมหัวเชื้อ อร่อยชื่นใจ</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">฿45 / ขวด</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/504917759_9452737214826645_8681400572067492958_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=Ghnz13MYpCgQ7kNvwF40v-c&_nc_oc=Adk_fyz2t232C_pDH7ETX3J-X0nYjrnGeK7kh-eCDjxtPAO9cGvjFHZ2f7osVFrThtQ&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=NRp89c50AiILJGnCswWT6w&oh=00_AfgmcdESrYpx0qWafhh5jSFGbfW9XQ8Uljuy8bUm9YzWaA&oe=693392B3" 
+                             alt="น้ำส้มเกล็ดหิมะ" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                         <div class="absolute top-4 right-4 bg-orange-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">แช่แข็ง</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">น้ำส้มเกล็ดหิมะ</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">หวานเย็นชื่นใจ เนื้อส้มเน้นๆ คลายร้อนได้ดีเยี่ยม</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">฿35 / ถ้วย</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Card 3 -->
+                 <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/505947118_9451836244916742_3746854923972839524_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=z5CLbUEIo-AQ7kNvwFThTpw&_nc_oc=AdlGKO0xqRS6TDLOxVsh77lQ7x3RgGDqF4fU5S7zGjCB59AL5BhhNQKVSNmTHyXvPuE&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=GyNEtUR53AJCNbYgGOIT8A&oh=00_AfiuFOJS-PAT4TVTCfYXGsEi9X1lb3l-P57sNN4vKUbChA&oe=69337785" 
+                             alt="น้ำส้มขวดใหญ่" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">น้ำส้มคั้นสด (ขวดใหญ่)</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">ขนาดครอบครัว จุใจ 1 ลิตร ดื่มได้ทั้งบ้าน</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">฿120 / ขวด</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-shopping-basket mr-2"></i> สั่งซื้อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Card 4 -->
+                 <div class="bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group tech-card border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506032272_9451186328315067_433183895014584213_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QKGs88BYqQAQ7kNvwGpV413&_nc_oc=Admg4n3xH6238Hw_gl3-xD88ROVdUEPHDRoy2GUWCT-MGOffPB-caScdkVKg0wO1AU0&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=_clSkUezEC_Y6k1EZVdnDw&oh=00_AfhBoAEGe2ZzqAJgP7yJ15uFaQmx_McD56tK3X9gM3rKzA&oe=693392B5" 
+                             alt="เซตจัดเบรค" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">Snack Box</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">เซตน้ำส้มจัดเบรค</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">เหมาะสำหรับงานเลี้ยง ประชุม สัมมนา</p>
+                        <div class="flex flex-col items-center gap-3">
+                            <span class="text-primary font-bold text-xl">เริ่มต้น ฿35</span>
+                            <button class="bg-gray-900 text-white w-full py-2 rounded-full flex items-center justify-center hover:bg-primary transition shadow-md">
+                                <i class="fas fa-clipboard-list mr-2"></i> ขอใบเสนอราคา
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -264,87 +383,241 @@
     <!-- Atmosphere / Gallery -->
     <section id="atmosphere" class="py-20 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900">บรรยากาศสวน</h2>
-                    <p class="mt-2 text-gray-600">มุมถ่ายรูปสวยๆ และธรรมชาติที่โอบล้อม</p>
-                </div>
-                <button class="hidden md:block text-primary font-semibold hover:text-orange-700">ดูทั้งหมด <i class="fas fa-arrow-right ml-2"></i></button>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">แกลเลอรีสวนส้ม</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-gray-600">สัมผัสบรรยากาศ ผลิตภัณฑ์ และความสดชื่นจากสวนของเรา</p>
+            </div>
+
+            <!-- Gallery Category Tabs (Minimalist Capsule Style) -->
+            <div class="flex justify-center gap-3 mb-10 flex-wrap">
+                <button onclick="switchGallery('garden')" id="btn-garden" class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-primary text-white shadow-sm hover:shadow-md">
+                    บรรยากาศสวน
+                </button>
+                <button onclick="switchGallery('products')" id="btn-products" class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200">
+                    ภาพสินค้า
+                </button>
+                <button onclick="switchGallery('oranges')" id="btn-oranges" class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200">
+                    ภาพส้ม
+                </button>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-[500px]">
-                <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
-                    <img src="https://images.unsplash.com/photo-1523456843477-94a55855fa24?auto=format&fit=crop&w=1000" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Atmosphere 1">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
+            <!-- Gallery Grid: Garden Atmosphere -->
+            <div id="gallery-garden" class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] animate-fade-in-up">
+                <!-- Large Highlight Image (2x2) -->
+                <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/472911620_8465971350169908_5248809455819811946_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=GNTvSX4Y9F8Q7kNvwFDL0JC&_nc_oc=AdnuSHcStD7Eq1EOaICGGQpwhX-q8D-sAkxUDPX-sp0nxGn2q4EF4nP0slN6dFLaufg&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=d2PmtyNde3WX30QWG0odug&oh=00_AfjZDA784jDbtCJKIIqwJpODXDFUIhqxRykkydiuD6UGgA&oe=6933997A" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="บรรยากาศสวน 1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute bottom-4 left-4 text-white font-medium">มุมมหาชน</div>
+                    </div>
                 </div>
-                <div class="rounded-2xl overflow-hidden relative group">
-                    <img src="https://images.unsplash.com/photo-1599527237078-4384a515f488?auto=format&fit=crop&w=500" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Atmosphere 2">
+
+                <!-- Standard Image -->
+                <div class="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t1.6435-9/142719160_3297887073645054_841387597452567713_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LvpgI1724xYQ7kNvwEA2UEu&_nc_oc=AdlcmDaqtG7ct8P3X33b3T2nnYVnfW8g4TqLcBaxt2s8RnZ-RPxBnb7QriTHTWkmI9o&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=nT7QWqKR9z9NUf2wWGyGBA&oh=00_Afh_CZedjF9xMXx5m_xfgBpFOi6dFBjI5QXi0r-I6MM09g&oe=695536F9" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="บรรยากาศสวน 2">
                 </div>
-                <div class="rounded-2xl overflow-hidden relative group">
-                    <img src="https://images.unsplash.com/photo-1621961601614-22d25089c198?auto=format&fit=crop&w=500" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Atmosphere 3">
+
+                <!-- Tall Image (1x2) -->
+                <div class="col-span-1 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t1.6435-9/51311791_1790430187724091_8175375208899674112_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=BaIrme8l-BoQ7kNvwH8HpI-&_nc_oc=AdmHDjBJ1bNKGOuVtzkX1GTnFJEPHqCBhKid6whgUaQpwAFqWMHKiAAxCi1igP7AZpE&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=1rLHA7s92Y3qIh_AClUw9w&oh=00_AfjtURs9DqkfGkEfONFCiqR6DfS1tiMOSw8lIqmFmR7n0A&oe=6955037E" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="บรรยากาศสวน 3">
                 </div>
-                <div class="col-span-2 rounded-2xl overflow-hidden relative group">
-                    <img src="https://images.unsplash.com/photo-1628186125437-5b68266927d6?auto=format&fit=crop&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Atmosphere 4">
+
+                <!-- Standard Image -->
+                <div class="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t1.6435-9/50668225_1763581403742303_6535238227756843008_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=dSFSs0f3bfgQ7kNvwEEuHaq&_nc_oc=AdnPXQhN-S75Y9WpRUFRgdZMVpT2gVQ2xrAS3bLedzFr1GjsNHb9oOCl8Z-0JS9oggY&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=C3wwOW8x05q5Si_Ut5qu_g&oh=00_Afj3KAcDqA0a3lyd01WQhHMF2xnqfu7euXo7CUltjqG2AA&oe=69550A68" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="บรรยากาศสวน 4">
+                </div>
+
+                <!-- Wide Image (2x1) -->
+                <div class="col-span-2 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506608399_9475567719210261_9102123518543679743_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KeK0htclBR0Q7kNvwG8QgHy&_nc_oc=AdnQhIZ6_5tm4Kg4s2kaDr1esqGlC_avQV-M9j_tI-VCl6cZr2gusGokpi9n3FDvgG8&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=DNNeql8fHrwKORNLsq9-xA&oh=00_Afi6Ll0ov20ieNOxTAODhRBCgB2fmDq0nHjTSjclCj8nvA&oe=69339AA7" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="บรรยากาศสวน 5">
+                </div>
+
+                <!-- Wide Image (2x1) -->
+                <div class="col-span-2 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506316553_9476298892470477_6226846204117160726_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6ScKzcy4tbMQ7kNvwGO2UG4&_nc_oc=AdkJdBmpkfOZCaIPV4XuO61Z5SeB018eGNj5pze8POSK21az8-z8ub2b1ru2D9psF_o&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=6XJ_x12okzT5-onF8K6Jag&oh=00_Afi1jk5tkEzBseFrFBSciA1WKJIiH8dJZZokWbxa8Hs55w&oe=6933889B" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="บรรยากาศสวน 6">
+                </div>
+            </div>
+
+            <!-- Gallery Grid: Product Images -->
+            <div id="gallery-products" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] animate-fade-in-up">
+                <!-- Large Highlight (2x2) -->
+                <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/508004764_9475551499211883_5651504901000213770_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=qtSPVL9NdSwQ7kNvwEAo-0r&_nc_oc=AdmTmjDFJr44tgl7HPlJOYpVxIYCtaDV4Q6meQazvIPLg5oSjnZoHwXAewU77tgMQqE&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=g-CMuGOZOz3Or5hU18bbmA&oh=00_AfjQa-5qzx7H9M1oGSK5pN-AVVnoTVZ5SeH4lE60Hw-XXw&oe=69338D9D" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพสินค้า 2">
+                </div>
+                <!-- Tall (1x2) -->
+                <div class="col-span-1 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/507963925_9475551242545242_4253108606599576883_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Yb83GS39bykQ7kNvwEFgY8U&_nc_oc=Adk6q9jyUfyID-4G_71CqJDQkVpoDAeXFyhMxk6lOkycFGrxN7KD81gCe_MfGooyXFs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=xIAINCAfw6Iz2Kj2Pde_Jw&oh=00_AfiL9R27sQZ_zd0jaFVw7LkUT1FU3emswbe-n7KTrH8N4g&oe=693382B5" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพสินค้า 3">
+                </div>
+                <!-- Standard (1x1) -->
+                <div class="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/507301972_9475551245878575_8653267323514836195_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PP608Fshb1oQ7kNvwGvNoBn&_nc_oc=AdnXj31h3Xl99_3SwCwJqnzb3Y9tARfJlc-3ydNjLN-wZBzy6bck67If-ipq3aTb6VY&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=00-WLgYGD8TEKzJ8NF8qTA&oh=00_AfgT4Qd2razGBwNG7P8tDMWFItuS2F0vY25zOG7BLVimiQ&oe=693371D4" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพสินค้า 4">
+                </div>
+                <!-- Standard (1x1) -->
+                <div class="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/506849143_9475551502545216_7051421103051844225_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=FJcbMGTU0GsQ7kNvwEYrmIr&_nc_oc=AdlUKnRCPTywzsai6fsomEfi_8_DaEcYWBW6u8EBbakMIbG9dhgwRUtzvL8s0ydrpMA&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=QVYsHaTldqhjS4WlMEqtWw&oh=00_Afjp3unbpOhV_uwHgB1YJ2F8dhnZD9HquqtRTVFyXQRNAQ&oe=693389D3" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพสินค้า 5">
+                </div>
+            </div>
+
+            <!-- Gallery Grid: Orange Images -->
+            <div id="gallery-oranges" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] animate-fade-in-up">
+                <!-- Large (2x2) -->
+                <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t1.6435-9/49898242_1748228761944234_7256635692300632064_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=N3odHR4_tyAQ7kNvwGC5bfJ&_nc_oc=AdmKWMSosGn6PaRz5wYYPzn4TL0LtNzU48hcLXttIGoKOzK_K7CFgmJzqP_mRcDnIAs&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=bbao0JKi42zabOHXblMkRg&oh=00_AfgsPCRwxp4rAWRKWoC69wtdMLnb5ljWuBq4EB6_KR07cQ&oe=695527BF" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพส้ม 1">
+                </div>
+                <!-- Standard (1x1) -->
+                <div class="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/501297688_9353337931433241_3212907079980450981_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=dKJ32s0lHcMQ7kNvwF7AKkz&_nc_oc=AdlOu5o-r_UOCqWpeIku7hJqvoOtpmZ-QIOxRkiJOg3e8CMFL4D43t-raYewhqz4dro&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=sfInTvIh5nfYmX7MEBMFBA&oh=00_AfjqCTkltQoklfBTGlE0UbBPbkkUpzsP_LrUNFP47_Dvdw&oe=693382F9" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพส้ม 2">
+                </div>
+                <!-- Standard (1x1) -->
+                <div class="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t1.6435-9/49517082_1749331168500660_3493515274601103360_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=_1nt5GIVxxEQ7kNvwGP053n&_nc_oc=AdnJINnsL5pj38S5LOTTYtRY7m2dxh-Wq67jal2Inev2KZU7BiGGeydH0nDC91bA6m0&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=VT6squc9NOkcLpQeLH8Y_g&oh=00_AfiYtan9QLZDj_buin5vUF0RSBQ8pV7YluZtylVuHioT8A&oe=69553944" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพส้ม 3">
+                </div>
+                <!-- Tall (1x2) -->
+                <div class="col-span-1 row-span-2 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/474584108_8542358262531216_2718185786489190179_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=uN_6ElCoQu8Q7kNvwES9HXt&_nc_oc=AdmaWLu_fLbkkY8IC8B-DNdthj70HIL8P8RhaGJNbwzYkoKQoWoB_D0G_HQeEi0MlXg&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=VMZg8qhV1bfCHM3epb4vPA&oh=00_AfhQyJTEk0xApwRgRgcsLpovbJfGxtPhCOmLztAjuxh92A&oe=69338A77" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพส้ม 4">
+                </div>
+                <!-- Wide (2x1) -->
+                <div class="col-span-2 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t1.6435-9/83755182_2386472958119808_9141562264304746496_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=JZz1Tymi8MwQ7kNvwHGSg68&_nc_oc=Adkcdg8zRoiEzjrN02L5jU55GbwT8Wf2Vx22FvDrNetonrA_tqBxV9fYte8p7HPaasg&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=ckTDl8zqmF-XjldH5E9LjA&oh=00_Afh1FfOJuKjrQnZ1Bx0Lw5f5Qq5DSOX48obKYYy8Ek1DtQ&oe=69550C46" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพส้ม 5">
+                </div>
+                <!-- Standard (1x1) -->
+                <div class="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group cursor-pointer h-full">
+                    <img src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t1.6435-9/52702569_1807268609373582_8231698666990075904_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QNoJnzaRGAgQ7kNvwEJQMwH&_nc_oc=AdnMI-yrkyto_u4WeFefSD0fmZ4XpNXXcI7X-dIbC5GhwwDXiRsA7NeTXrA97pMqJNg&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=RG1WMA247hXJsVMbv3EQ9A&oh=00_Afj8k7JHWtEk6VEIlbzXo86W_CkVJ-JEV5HNXZjzRpiybA&oe=69550B80" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="ภาพส้ม 6">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Booking System -->
-    <section id="booking" class="py-20 bg-secondary/30 relative">
-        <div class="absolute right-0 top-0 opacity-10 pointer-events-none">
-            <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#E65100" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-5.3C93.5,8.6,82.2,21.5,70.9,32.4C59.6,43.3,48.3,52.2,36.5,59.3C24.7,66.4,12.3,71.7,-1.4,74.1C-15.1,76.5,-30.2,76,-43.3,69.5C-56.4,63,-67.5,50.5,-75.4,36.3C-83.3,22.1,-88,6.2,-85.4,-8.6C-82.8,-23.4,-72.9,-37.1,-61.1,-46.8C-49.3,-56.5,-35.6,-62.2,-22.1,-69.7C-8.6,-77.2,4.7,-86.5,19.2,-86.5C33.7,-86.5,49.4,-77.2,44.7,-76.4Z" transform="translate(100 100)" />
-            </svg>
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
-                <div class="md:w-5/12 bg-primary p-10 text-white flex flex-col justify-center relative overflow-hidden">
+    <!-- Tech Style Pre-order System -->
+    <section id="booking" class="py-24 bg-gray-50 relative overflow-hidden">
+        <!-- Abstract Background Tech Elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-orange-300 blur-3xl opacity-20 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-100 blur-3xl opacity-30 pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 overflow-hidden flex flex-col md:flex-row">
+                
+                <!-- Left Panel: Dark Tech Theme -->
+                <div class="md:w-1/3 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-10 flex flex-col justify-between relative overflow-hidden">
+                    <!-- Decorative Grid Background -->
+                    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    
                     <div class="relative z-10">
-                        <h3 class="text-3xl font-bold mb-4">จองคิวเข้าชม</h3>
-                        <p class="mb-6 opacity-90">วางแผนวันหยุดของคุณล่วงหน้า เพื่อประสบการณ์ที่ดีที่สุดในการเยี่ยมชมสวน</p>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center"><i class="fas fa-check-circle mr-2 text-orange-200"></i> ไม่จำกัดเวลาเดินชม</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle mr-2 text-orange-200"></i> อุปกรณ์ตัดส้มฟรี</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle mr-2 text-orange-200"></i> ที่จอดรถสะดวกสบาย</li>
-                        </ul>
+                        <div class="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+                            <i class="fas fa-cube text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-2 font-sans tracking-tight">Pre-order</h3>
+                        <p class="text-orange-400 text-xs tracking-[0.2em] uppercase mb-6 font-bold">System 2.0</p>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            ระบบจองสินค้าอัจฉริยะ การันตีความสดใหม่จากสวนแม่สรวย เลือกสินค้า ระบุจำนวน และรอรับความอร่อยส่งตรงถึงหน้าบ้าน
+                        </p>
+                    </div>
+
+                    <div class="relative z-10 space-y-4">
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md transition hover:bg-white/10">
+                            <div class="w-10 h-10 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center border border-green-500/30">
+                                <i class="fas fa-signal"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Status</div>
+                                <div class="text-sm font-bold text-white">Online & Ready</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md transition hover:bg-white/10">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
+                                <i class="fas fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-wider font-bold">Delivery</div>
+                                <div class="text-sm font-bold text-white">Express Shipping</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-7/12 p-10">
-                    <form action="#" class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">ชื่อผู้จอง</label>
-                                <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="ชื่อ-นามสกุล">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">เบอร์โทรศัพท์</label>
-                                <input type="tel" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="08x-xxx-xxxx">
+
+                <!-- Right Panel: Modern Form -->
+                <div class="md:w-2/3 p-8 md:p-12 bg-white">
+                    <form action="#" onsubmit="event.preventDefault(); alert('ระบบจำลอง: ได้รับข้อมูลการจองเรียบร้อยแล้ว');">
+                        
+                        <!-- Step 1: Product Selection (Card Style) -->
+                        <div class="mb-8">
+                            <label class="block text-sm font-bold text-gray-900 mb-4 flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-xs mr-2">1</span>
+                                เลือกประเภทสินค้า
+                            </label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <!-- Option 1 -->
+                                <label class="cursor-pointer relative group">
+                                    <input type="radio" name="product_type" value="fresh" class="peer sr-only" checked>
+                                    <div class="p-4 rounded-2xl border-2 border-gray-100 hover:border-orange-200 bg-white peer-checked:border-orange-500 peer-checked:bg-orange-50 transition-all duration-300 h-full flex flex-col items-center text-center shadow-sm hover:shadow-md">
+                                        <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mb-3 text-xl group-hover:scale-110 transition">
+                                            <i class="fas fa-leaf"></i>
+                                        </div>
+                                        <span class="font-bold text-gray-800 text-sm">ส้มสดจากต้น</span>
+                                        <span class="text-xs text-gray-500 mt-1">คัดเกรด A+</span>
+                                        <div class="absolute top-3 right-3 opacity-0 peer-checked:opacity-100 text-orange-500 transition-opacity">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <!-- Option 2 -->
+                                <label class="cursor-pointer relative group">
+                                    <input type="radio" name="product_type" value="juice" class="peer sr-only">
+                                    <div class="p-4 rounded-2xl border-2 border-gray-100 hover:border-orange-200 bg-white peer-checked:border-orange-500 peer-checked:bg-orange-50 transition-all duration-300 h-full flex flex-col items-center text-center shadow-sm hover:shadow-md">
+                                        <div class="w-12 h-12 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center mb-3 text-xl group-hover:scale-110 transition">
+                                            <i class="fas fa-bottle-water"></i>
+                                        </div>
+                                        <span class="font-bold text-gray-800 text-sm">น้ำส้มคั้น/แปรรูป</span>
+                                        <span class="text-xs text-gray-500 mt-1">สดชื่น 100%</span>
+                                        <div class="absolute top-3 right-3 opacity-0 peer-checked:opacity-100 text-orange-500 transition-opacity">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                    </div>
+                                </label>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">วันที่เข้าชม</label>
-                                <input type="date" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+
+                        <!-- Step 2: Details & Contact -->
+                        <div class="space-y-6">
+                            <label class="block text-sm font-bold text-gray-900 flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-xs mr-2">2</span>
+                                ข้อมูลการจัดส่ง
+                            </label>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="relative group">
+                                    <input type="number" required placeholder=" " class="peer w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-orange-500 focus:bg-white transition-all font-medium text-gray-700">
+                                    <label class="absolute left-4 top-3 text-gray-400 text-sm transition-all peer-focus:-top-2.5 peer-focus:left-3 peer-focus:bg-white peer-focus:px-1 peer-focus:text-xs peer-focus:text-orange-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm pointer-events-none">จำนวน (กก./ชุด)</label>
+                                </div>
+                                <div class="relative group">
+                                    <input type="text" required placeholder=" " class="peer w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-orange-500 focus:bg-white transition-all font-medium text-gray-700">
+                                    <label class="absolute left-4 top-3 text-gray-400 text-sm transition-all peer-focus:-top-2.5 peer-focus:left-3 peer-focus:bg-white peer-focus:px-1 peer-focus:text-xs peer-focus:text-orange-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm pointer-events-none">ชื่อผู้สั่งจอง</label>
+                                </div>
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">จำนวนคน</label>
-                                <select class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
-                                    <option>1 ท่าน</option>
-                                    <option>2-5 ท่าน</option>
-                                    <option>6-10 ท่าน</option>
-                                    <option>มากกว่า 10 ท่าน</option>
-                                </select>
+
+                            <div class="relative group">
+                                <input type="tel" required placeholder=" " class="peer w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-orange-500 focus:bg-white transition-all font-medium text-gray-700">
+                                <label class="absolute left-4 top-3 text-gray-400 text-sm transition-all peer-focus:-top-2.5 peer-focus:left-3 peer-focus:bg-white peer-focus:px-1 peer-focus:text-xs peer-focus:text-orange-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm pointer-events-none">เบอร์โทรศัพท์</label>
+                            </div>
+
+                            <div class="relative group">
+                                <textarea required placeholder=" " class="peer w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 h-24 outline-none focus:border-orange-500 focus:bg-white transition-all font-medium text-gray-700 resize-none"></textarea>
+                                <label class="absolute left-4 top-3 text-gray-400 text-sm transition-all peer-focus:-top-2.5 peer-focus:left-3 peer-focus:bg-white peer-focus:px-1 peer-focus:text-xs peer-focus:text-orange-500 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm pointer-events-none">ที่อยู่จัดส่ง</label>
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">ข้อความเพิ่มเติม</label>
-                            <textarea class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 h-24 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="เช่น มาถ่ายพรีเวดดิ้ง, ต้องการวิทยากร"></textarea>
+
+                        <!-- Submit Button -->
+                        <div class="mt-8">
+                            <button type="submit" class="group relative w-full bg-gray-900 text-white font-bold py-4 rounded-xl overflow-hidden shadow-lg hover:shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                                <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <span class="relative flex items-center justify-center gap-2">
+                                    ยืนยันการจอง <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </span>
+                            </button>
+                            <p class="text-center text-xs text-gray-400 mt-4"><i class="fas fa-shield-alt mr-1"></i> ข้อมูลของท่านจะถูกเก็บเป็นความลับ</p>
                         </div>
-                        <button type="button" class="w-full bg-gray-900 hover:bg-primary text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md transform hover:-translate-y-1">
-                            ยืนยันการจอง
-                        </button>
+
                     </form>
                 </div>
             </div>
@@ -356,7 +629,7 @@
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="border border-red-100 rounded-2xl bg-red-50 p-8">
                 <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 mr-4">
+                    <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 mr-4 flex-shrink-0">
                         <i class="fas fa-exclamation-triangle text-xl"></i>
                     </div>
                     <div>
@@ -365,21 +638,21 @@
                     </div>
                 </div>
 
-                <form class="space-y-4 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <form class="space-y-4 bg-white p-6 rounded-xl shadow-sm border border-gray-100" onsubmit="event.preventDefault(); alert('ระบบจำลอง: ส่งเรื่องแจ้งเคลมเรียบร้อยแล้ว');">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">หมายเลขคำสั่งซื้อ (Order ID)</label>
-                        <input type="text" class="w-full border-gray-200 rounded-lg focus:ring-red-500 focus:border-red-500" placeholder="#ORD-XXXX">
+                        <input type="text" required class="w-full border-gray-200 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none" placeholder="#ORD-XXXX">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">รายละเอียดความเสียหาย</label>
-                        <textarea class="w-full border-gray-200 rounded-lg focus:ring-red-500 focus:border-red-500 h-24" placeholder="เช่น ส้มแตก, กล่องบุบ, ได้รับสินค้าไม่ครบ"></textarea>
+                        <textarea required class="w-full border-gray-200 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:outline-none h-24" placeholder="เช่น ส้มแตก, กล่องบุบ, ได้รับสินค้าไม่ครบ"></textarea>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">รูปภาพประกอบ (หลักฐาน)</label>
                         <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:bg-gray-50 cursor-pointer transition">
                             <div class="space-y-1 text-center">
                                 <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
-                                <div class="flex text-sm text-gray-600">
+                                <div class="flex text-sm text-gray-600 justify-center">
                                     <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-red-600 hover:text-red-500 focus-within:outline-none">
                                         <span>อัปโหลดรูปภาพ</span>
                                         <input id="file-upload" name="file-upload" type="file" class="sr-only">
@@ -390,7 +663,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                    <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
                         ส่งเรื่องแจ้งเคลม
                     </button>
                 </form>
@@ -404,16 +677,21 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center gap-3 mb-4">
-                        <img class="h-10 w-auto rounded-full" src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/460353343_7756414081125642_6234499141421069389_n.png?stp=dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=1IFlUZ5A4vAQ7kNvwFBcvKo&_nc_oc=AdkCxRvabD24yBROEBywJpkjs86fb3qi5F5G0P_KovZDeKFabbqCqoXFw25Hu7p3le0&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=0FbDq_6lwbcR7uQ-Cs1zcQ&oh=00_AfhaqmONVlpU0yzfS-2CS-tqQm4ADwUW28PteQK-MBnG6Q&oe=69337586" alt="Logo">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                             <img class="h-full w-full object-cover" src="https://scontent.fbkk21-1.fna.fbcdn.net/v/t39.30808-6/460353343_7756414081125642_6234499141421069389_n.png?stp=dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=1IFlUZ5A4vAQ7kNvwFBcvKo&_nc_oc=AdkCxRvabD24yBROEBywJpkjs86fb3qi5F5G0P_KovZDeKFabbqCqoXFw25Hu7p3le0&_nc_zt=23&_nc_ht=scontent.fbkk21-1.fna&_nc_gid=0FbDq_6lwbcR7uQ-Cs1zcQ&oh=00_AfhaqmONVlpU0yzfS-2CS-tqQm4ADwUW28PteQK-MBnG6Q&oe=69337586" 
+                             onerror="this.style.display='none'"
+                             alt="Logo">
+                             <i class="fas fa-orange text-primary" style="display:none;" onload="if(this.previousElementSibling.style.display=='none') this.style.display='block'"></i>
+                        </div>
                         <span class="text-2xl font-bold">สวนส้ม วังน้ำทิพย์</span>
                     </div>
                     <p class="text-gray-400 mb-6 max-w-sm">
                         สวนส้มคุณภาพใจกลางธรรมชาติ เรามุ่งมั่นส่งมอบผลผลิตที่ดีที่สุด พร้อมประสบการณ์การท่องเที่ยวเชิงเกษตรที่ประทับใจ
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-line fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fab fa-line"></i></a>
                     </div>
                 </div>
                 
@@ -438,7 +716,7 @@
             </div>
             
             <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2023 สวนส้ม วังน้ำทิพย์. All rights reserved. Designed with <i class="fas fa-heart text-red-500"></i></p>
+                <p>&copy; 2023 สวนส้ม วังน้ำทิพย์. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -449,18 +727,31 @@
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                // Optional: Change icon
+                const icon = btn.querySelector('i');
+                if(menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+        }
 
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('shadow-md');
-                navbar.classList.remove('py-4'); // ลด padding เมื่อ scroll
+                navbar.classList.add('glass');
+                navbar.classList.remove('py-4'); 
             } else {
                 navbar.classList.remove('shadow-md');
+                navbar.classList.remove('glass');
             }
         });
 
@@ -468,12 +759,98 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                menu.classList.add('hidden'); // Close mobile menu on click
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                // Close mobile menu on click if open
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
+
+        // Product Category Switcher
+        function switchCategory(type) {
+            const btnFresh = document.getElementById('btn-fresh');
+            const btnJuice = document.getElementById('btn-juice');
+            const gridFresh = document.getElementById('grid-fresh');
+            const gridJuice = document.getElementById('grid-juice');
+
+            if (type === 'fresh') {
+                // Show Fresh
+                gridFresh.classList.remove('hidden');
+                gridJuice.classList.add('hidden');
+                
+                // Active Style for Fresh Btn
+                btnFresh.classList.add('bg-primary', 'text-white', 'ring-4', 'ring-orange-100', 'shadow-md');
+                btnFresh.classList.remove('bg-white', 'text-gray-600', 'hover:bg-orange-50', 'border', 'border-gray-200', 'shadow-sm');
+                
+                // Inactive Style for Juice Btn
+                btnJuice.classList.remove('bg-primary', 'text-white', 'ring-4', 'ring-orange-100', 'shadow-md');
+                btnJuice.classList.add('bg-white', 'text-gray-600', 'hover:bg-orange-50', 'border', 'border-gray-200', 'shadow-sm');
+
+            } else {
+                // Show Juice
+                gridFresh.classList.add('hidden');
+                gridJuice.classList.remove('hidden');
+
+                // Active Style for Juice Btn
+                btnJuice.classList.add('bg-primary', 'text-white', 'ring-4', 'ring-orange-100', 'shadow-md');
+                btnJuice.classList.remove('bg-white', 'text-gray-600', 'hover:bg-orange-50', 'border', 'border-gray-200', 'shadow-sm');
+
+                // Inactive Style for Fresh Btn
+                btnFresh.classList.remove('bg-primary', 'text-white', 'ring-4', 'ring-orange-100', 'shadow-md');
+                btnFresh.classList.add('bg-white', 'text-gray-600', 'hover:bg-orange-50', 'border', 'border-gray-200', 'shadow-sm');
+            }
+        }
+
+        // Gallery Category Switcher
+        function switchGallery(type) {
+            const btnGarden = document.getElementById('btn-garden');
+            const btnProducts = document.getElementById('btn-products');
+            const btnOranges = document.getElementById('btn-oranges');
+            
+            const galleryGarden = document.getElementById('gallery-garden');
+            const galleryProducts = document.getElementById('gallery-products');
+            const galleryOranges = document.getElementById('gallery-oranges');
+
+            // Reset all buttons to inactive state
+            [btnGarden, btnProducts, btnOranges].forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white', 'shadow-sm', 'hover:shadow-md');
+                btn.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            });
+
+            // Hide all galleries
+            [galleryGarden, galleryProducts, galleryOranges].forEach(gallery => {
+                gallery.classList.add('hidden');
+            });
+
+            // Activate selected category
+            if (type === 'garden') {
+                btnGarden.classList.add('bg-primary', 'text-white', 'shadow-sm', 'hover:shadow-md');
+                btnGarden.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+                galleryGarden.classList.remove('hidden');
+            } else if (type === 'products') {
+                btnProducts.classList.add('bg-primary', 'text-white', 'shadow-sm', 'hover:shadow-md');
+                btnProducts.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+                galleryProducts.classList.remove('hidden');
+            } else if (type === 'oranges') {
+                btnOranges.classList.add('bg-primary', 'text-white', 'shadow-sm', 'hover:shadow-md');
+                btnOranges.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+                galleryOranges.classList.remove('hidden');
+            }
+        }
     </script>
 </body>
 </html>
